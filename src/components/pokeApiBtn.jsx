@@ -1,22 +1,34 @@
 import React from 'react'
 import {useEffect, useState} from 'react';
+import axios from 'axios';
 
 const PokeApiBtn = (props) => {
-    const [people, setPeople] = useState([]);
+    const [poke, setPoke] = useState([]);
     const [show, setShow] = useState(false);
  
     useEffect(() => {
-        fetch('https://pokeapi.co/api/v2/pokemon/')
-            .then(response =>response.json())
-            .then(resp => {
-                console.log(resp.results)
-                return(setPeople(resp.results))})
+
+        // AXIOS
+        const obtainPoke = async () => {
+            const response = await axios.get('https://pokeapi.co/api/v2/pokemon');
+            setPoke(response.data.results)
+            // return (setPeople(response.results))
+            }
+        obtainPoke();
+
+        // FETCH
+        // fetch('https://pokeapi.co/api/v2/pokemon/')
+        //     .then(response =>response.json())
+        //     .then(resp => {
+        //         return(setPeople(resp.results))})
+
     }, [show]);
  
     const showPoke = (e) => {
         e.preventDefault();
-        setShow(!show);
-        console.log(show);
+        const actualState = !show;
+        setShow(actualState);
+        console.log(actualState);
     }
 
     const displayPoke = (props) =>{
@@ -24,7 +36,7 @@ const PokeApiBtn = (props) => {
             return(
                 <ul>
                     {
-                        people.map((itm,idx)=>
+                        poke.map((itm,idx)=>
                         <li key={idx}>{itm.name}</li>)
                     }
                 </ul>
