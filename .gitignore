@@ -21,3 +21,10 @@
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
+
+
+/src/components/Aa.jsx
+/src/components/buscaPoke.jsx
+/src/components/Toledo_Ignacio_lanzaMoneda.js
+isMonday.js
+fetchPractice.html
